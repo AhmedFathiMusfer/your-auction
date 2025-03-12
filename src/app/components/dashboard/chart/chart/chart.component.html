@@ -1,0 +1,27 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 mt-5">
+  <div class="bg-white p-8 rounded-xl shadow-md text-right">
+    <!-- العنوان -->
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-2 text-gray-500">
+        <i class="fas fa-info-circle text-blue-500"></i>
+        <span class="text-2xl font-bold text-gray-700"
+          >إحصائيات الأرباح خلال 7 أيام</span
+        >
+      </div>
+      <span class="text-md text-gray-500"
+        >النسبة بالفواتير الإلكترونية (5%)</span
+      >
+    </div>
+
+    <div class="relative my-4 h-64">
+      <canvas #lineChart></canvas>
+    </div>
+  </div>
+  <!-- المخطط الثاني -->
+  <div class="p-4 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-700 mb-4 text-center">
+      أكثر المزادات مبيعًا
+    </h2>
+    <canvas #auctionChart></canvas>
+  </div>
+</div>

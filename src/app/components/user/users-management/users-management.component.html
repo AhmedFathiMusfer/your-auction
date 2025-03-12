@@ -1,0 +1,63 @@
+<div class="p-6 text-right">
+  <!-- العنوان وزر الإضافة -->
+  <div class="flex flex-wrap justify-between items-center mb-6">
+    <h2 class="text-xl font-bold mb-4">إدارة المستخدمين</h2>
+    <button
+      class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+      (click)="openModal()"
+    >
+      إضافة مستخدم
+    </button>
+  </div>
+
+  <!-- النافذة المنبثقة -->
+  <app-add-user [isOpen]="isModalOpen" (close)="closeModal()"></app-add-user>
+
+  <!-- جعل الجدول قابلاً للتمرير أفقيًا في الشاشات الصغيرة -->
+  <div class="overflow-x-auto">
+    <table
+      class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden"
+    >
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-sm sm:text-base">ID</th>
+          <th class="p-3 text-sm sm:text-base">الاسم الكامل</th>
+          <th class="p-3 text-sm sm:text-base">البريد الإلكتروني</th>
+          <th class="p-3 text-sm sm:text-base">رقم الهاتف</th>
+          <th class="p-3 text-sm sm:text-base">كلمة السر</th>
+          <th class="p-3 text-sm sm:text-base">حالة الحساب</th>
+          <th class="p-3 text-sm sm:text-base">
+            <img class="w-10" src="/assets/icons/info.png" alt="" />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t text-sm sm:text-base" *ngFor="let user of users">
+          <td class="p-3">{{ user.id }}</td>
+          <td class="p-3">{{ user.name }}</td>
+          <td class="p-3">{{ user.email }}</td>
+          <td class="p-3">{{ user.Phone }}</td>
+          <td class="p-3">{{ user.password }}</td>
+          <td class="p-3">
+            <button
+              class="text-white font-bold py-2 px-3 rounded-3xl w-full sm:w-40 shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+              [ngClass]="{
+                'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 ':
+                  user.status === 'موثق',
+                'bg-yellow-600 hover:bg-yellow-700 active:bg-yellow-800':
+                  user.status === 'جاري التحقق',
+                'bg-red-600 hover:bg-red-700 active:bg-red-800':
+                  user.status === 'غير موثق'
+              }"
+            >
+              {{ user.status }}
+            </button>
+          </td>
+          <td class="p-3">
+            <img class="w-10" src="/assets/icons/Edit.png" alt="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

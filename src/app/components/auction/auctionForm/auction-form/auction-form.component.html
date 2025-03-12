@@ -1,0 +1,84 @@
+<div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-auto">
+  <div class="flex justify-between items-center">
+    <h2 class="text-lg font-semibold">تفاصيل المزاد</h2>
+    <button (click)="closeDialog()" class="text-gray-500">&times;</button>
+  </div>
+  <form
+    [formGroup]="auctionForm"
+    (ngSubmit)="submitForm()"
+    class="grid grid-cols-2 gap-4 mt-4"
+  >
+    <input
+      class="border p-2 rounded col-span-2"
+      formControlName="productName"
+      placeholder="اسم المنتج"
+      required
+    />
+    <textarea
+      class="border p-2 rounded col-span-2"
+      formControlName="description"
+      placeholder="الوصف"
+      required
+    ></textarea>
+    <input
+      class="border p-2 rounded"
+      formControlName="sellerName"
+      placeholder="اسم البائع"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="email"
+      type="email"
+      placeholder="البريد الإلكتروني"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="phone"
+      type="tel"
+      placeholder="رقم الهاتف"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="quantity"
+      type="number"
+      placeholder="الكمية"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="price"
+      type="text"
+      placeholder="السعر"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="startDate"
+      type="datetime-local"
+      placeholder="بداية المزاد"
+      required
+    />
+    <input
+      class="border p-2 rounded"
+      formControlName="endDate"
+      type="datetime-local"
+      placeholder="انتهاء المزاد"
+      required
+    />
+    <div class="col-span-2 flex justify-between mt-6">
+      <button
+        type="button"
+        class="bg-red-500 text-white py-2 px-4 rounded"
+        (click)="closeDialog()"
+      >
+        حذف
+      </button>
+      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">
+        موافق
+      </button>
+    </div>
+  </form>
+</div>

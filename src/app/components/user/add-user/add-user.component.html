@@ -1,0 +1,86 @@
+<!-- Overlay الخلفية الشفافة -->
+<div
+  *ngIf="isOpen"
+  class="fixed p-50 inset-0 bg-black bg-opacity-25 w-scrren flex items-center justify-center z-50"
+>
+  <!-- نافذة الحوار -->
+  <div class="bg-white w-1/2 sm:h-auto rounded-3xl shadow-lg">
+    <!-- عنوان النافذة -->
+    <div class="flex bg-color p-3 rounded-t-lg justify-between items-center">
+      <h2 class="text-2xl text-white font-bold">اضافة مستخدم</h2>
+      <button
+        (click)="closeModal()"
+        class="text-gray-600 hover:text-red-500 text-2xl"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- محتوى النافذة -->
+    <div class="mt-4 p-6">
+      <form>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div>
+            <label for="email" class="block mb-3 text-2xl text-right"
+              >البريد الإلكتروني</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full border border-gray-300 rounded-lg p-2 mt-1"
+            />
+          </div>
+          <div>
+            <label for="name" class="block mb-3 text-2xl text-right"
+              >الاسم الكامل</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full border border-gray-300 rounded-lg p-2 mt-1"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block mb-3 text-2xl text-right"
+              >رقم الهاتف</label
+            >
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              class="w-full border border-gray-300 rounded-lg p-2 mt-1"
+            />
+          </div>
+          <div>
+            <label for="address" class="block mb-3 text-2xl text-right"
+              >العنوان</label
+            >
+            <input
+              type="text"
+              id="address"
+              name="address"
+              class="w-full border border-gray-300 rounded-lg p-2 mt-1"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-6 flex flex-col sm:flex-row justify-around p-4">
+      <button
+        (click)="closeModal()"
+        class="bg-blue-600 text-white text-2xl m-2 w-full px-4 py-2 rounded-lg hover:bg-blue-700"
+      >
+        إضافة
+      </button>
+      <button
+        (click)="closeModal()"
+        class="bg-red-600 text-white m-2 text-2xl px-4 w-full py-2 rounded-lg hover:bg-red-700"
+      >
+        إغلاق
+      </button>
+    </div>
+  </div>
+</div>

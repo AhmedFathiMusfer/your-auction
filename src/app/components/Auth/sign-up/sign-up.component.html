@@ -1,0 +1,61 @@
+<div class="flex items-center bg-gray-100 justify-center min-h-screen px-4">
+  <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
+    <h2 class="text-3xl primary-color font-bold text-center">انشاء حساب</h2>
+    <p class="text-center text-gray-600">انشاء حساب للاستمرار</p>
+
+    <form class="mt-4 mt-3">
+      <!-- Email -->
+      <label class="block text-xl mb-2 text-gray-700">البريد الكتروني:</label>
+      <input
+        type="email"
+        class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your email"
+      />
+
+      <!-- Full Name -->
+      <label class="block text-xl mb-2 text-gray-700 mt-3">الاسم الكامل:</label>
+      <input
+        type="text"
+        class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your name"
+      />
+
+      <!-- Phone Number -->
+      <label class="block text-xl mb-2 text-gray-700 mt-3">رقم الجوال:</label>
+      <input
+        type="text"
+        class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your phone number"
+      />
+
+      <!-- Password -->
+      <label class="block text-xl mb-2 text-gray-700 mt-3">كلمة المرور:</label>
+      <input
+        type="password"
+        class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your password"
+      />
+
+      <!-- Terms and Conditions -->
+      <div class="flex items-center mt-4">
+        <input type="checkbox" class="mr-3" />
+        <span class="text-xl mr-2 text-gray-600">اقبل الشروط والاحكام</span>
+      </div>
+
+      <!-- Sign Up Button -->
+      <button
+        class="w-full text-xl bg-color text-white py-2 rounded-md mt-4 hover:bg-blue-900 transition"
+      >
+        انشاء حساب
+      </button>
+    </form>
+
+    <!-- Login Link -->
+    <p class="text-center text-xl text-gray-600 mt-4">
+      هل لديك حساب با الفعل?
+      <a routerLink="/Login" class="text-blue-500 text-xl hover:underline"
+        >تسجيل الدخول</a
+      >
+    </p>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<!-- زر إظهار القائمة الجانبية في الشاشات الصغيرة -->
+<button
+  class="lg:hidden p-3 text-white absolute top-30 left-101"
+  (click)="toggleSidebar()"
+>
+  <img class="w-8 h-8 rounded-full ml-2" src="/assets/icons/menu.png" alt="" />
+</button>
+
+<!-- القائمة الجانبية -->
+<aside
+  class="w-64 bg-blue-900 text-white h-screen p-4 fixed lg:static top-0 right-0 transform transition-transform duration-300 ease-in-out"
+  [ngClass]="{
+    'translate-x-0': isSidebarOpen,
+    'translate-x-full lg:translate-x-0': !isSidebarOpen
+  }"
+>
+  <!-- زر الإغلاق في الشاشات الصغيرة -->
+  <button
+    class="lg:hidden absolute top-4 left-4 text-white text-2xl"
+    (click)="toggleSidebar()"
+  >
+    ✖
+  </button>
+  <h2
+    class="text-3xl font-bold bg-gray-100 primary-color rounded-lg px-6 py-4 text-center"
+  >
+    مزادك
+  </h2>
+
+  <nav class="mt-8">
+    <ul class="text-center">
+      <li
+        routerLink="/Dashboard"
+        routerLinkActive="bg-blue-700"
+        class="flex items-center mb-5 p-3 hover:bg-blue-700 rounded"
+      >
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a class="text-2xl flex-1 text-right">لوحة التحكم</a>
+      </li>
+      <li
+        routerLink="/User"
+        routerLinkActive="bg-blue-700"
+        class="flex items-center mb-5 p-3 hover:bg-blue-700 rounded"
+      >
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a class="text-2xl flex-1 text-right">الحسابات</a>
+      </li>
+      <li
+        routerLink="/Product"
+        routerLinkActive="bg-blue-700"
+        class="flex items-center mb-5 p-3 hover:bg-blue-700 rounded"
+      >
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a class="text-2xl flex-1 text-right">المنتجات</a>
+      </li>
+      <li
+        routerLink="/Auction"
+        routerLinkActive="bg-blue-700"
+        class="flex items-center mb-5 p-3 hover:bg-blue-700 rounded"
+      >
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a class="text-2xl flex-1 text-right">المزادات</a>
+      </li>
+      <li class="flex items-center mb-5 p-3 hover:bg-blue-700 rounded">
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a
+          routerLinkActive="active-link"
+          class="text-2xl flex-1 text-right"
+          href="#"
+          >الشكاوى والاقتراحات</a
+        >
+      </li>
+      <li class="flex items-center mb-5 p-3 hover:bg-red-600 rounded">
+        <img class="w-6 h-6 ml-2" src="/assets/icons/rawLeft.png" alt="" />
+        <a
+          routerLinkActive="active-link"
+          class="text-2xl flex-1 text-right"
+          routerLink="/SignUp"
+          >تسجيل الخروج</a
+        >
+      </li>
+    </ul>
+  </nav>
+</aside>
