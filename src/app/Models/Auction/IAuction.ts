@@ -1,12 +1,14 @@
 interface IAuction {
   id: number;
-  name: string;
-  numperOfBidders: number;
+  productName: string;
+  numberOfBidders: number;
   price: number;
+  salleName: string;
   description: string;
   quantity: number;
-  createdAt: Date;
-  endtedAt: Date;
-  status: string;
+  startDate: Date;
+  endDate: Date;
+  state: string;
+  imagesUrl: string[];
 }
 export default IAuction;

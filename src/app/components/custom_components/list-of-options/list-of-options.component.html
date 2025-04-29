@@ -1,0 +1,21 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="menu"
+  aria-label="Example icon-button with a menu"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button (click)="addToAuction()" mat-menu-item>
+    <mat-icon>Add</mat-icon>
+    <span>AddToAuction</span>
+  </button>
+  <button [routerLink]="['update', ProductId]" mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>Update</span>
+  </button>
+  <button [routerLink]="['details', ProductId]" mat-menu-item>
+    <mat-icon>details</mat-icon>
+    <span>Details</span>
+  </button>
+</mat-menu>

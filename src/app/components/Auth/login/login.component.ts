@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AuthServiceService } from '../../../services/auth-service.service';
-import ILoginRequset from '../../../Models/Auth/loginRequset';
+
 import { FormsModule } from '@angular/forms';
+import { Login } from '../../../Models/Auth/Auth';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +12,29 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  LoginRequset: ILoginRequset;
+  LoginRequset: Login;
   successLogin: boolean = true;
-  constructor(
-    private _authServiceService: AuthServiceService,
-    private _router: Router
-  ) {
+  constructor(private _authService: AuthService, private _router: Router) {
     this.LoginRequset = {
       email: '',
       password: '',
     };
   }
   login() {
-    this.successLogin = this._authServiceService.login(this.LoginRequset);
+    console.log('LoginRequset:', this.LoginRequset);
+    var respons = this._authService.login(this.LoginRequset).subscribe({
+      next: (data) => {
+        console.log('✅ البيانات المسترجعة:', data);
+        this.successLogin = true;
+        this._router.navigate(['/User']);
+      },
+      error: (error) => {
+        console.error('❌ حدث خطأ:', error);
+        this.successLogin = false;
+      },
+    });
     if (this.successLogin) {
-      this._router.navigate(['/User']);
+      // this._router.navigate(['/User']);
     }
   }
 }

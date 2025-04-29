@@ -8,12 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    NavbarComponent,
-    SidebarComponent,
-    DashboardComponent,
-  ],
+  imports: [RouterOutlet, NavbarComponent, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -22,5 +17,8 @@ export class AppComponent {
   constructor(private router: Router) {}
   is_login_bage(): boolean {
     return this.router.url === '/SignUp' || this.router.url === '/Login';
+  }
+  is_admin_page(): boolean {
+    return this.router.url === '/dashboard' || this.router.url === '/users-management';
   }
 }

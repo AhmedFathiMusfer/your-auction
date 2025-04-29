@@ -3,7 +3,7 @@
   <div class="flex flex-wrap justify-between items-center mb-6">
     <h2 class="text-xl font-bold mb-4">إدارة المزادات</h2>
     <button
-      (click)="openDialog()"
+      (click)="openModal()"
       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
     >
       إضافة مزاد
@@ -11,7 +11,6 @@
   </div>
 
   <!-- النافذة المنبثقة -->
-  <!-- <app-add-user [isOpen]="isModalOpen" (close)="closeModal()"></app-add-user>-->
 
   <!-- جعل الجدول قابلاً للتمرير أفقيًا في الشاشات الصغيرة -->
   <div class="overflow-x-auto">
@@ -39,29 +38,29 @@
           *ngFor="let auction of auctions"
         >
           <td class="p-3">{{ auction.id }}</td>
-          <td class="p-3">{{ auction.name }}</td>
-          <td class="p-3">{{ auction.numperOfBidders }}</td>
+          <td class="p-3">{{ auction.productName }}</td>
+          <td class="p-3">{{ auction.numberOfBidders }}</td>
           <td class="p-3">{{ auction.price }}</td>
           <td class="p-3">{{ auction.quantity }}</td>
           <td class="p-3">
-            {{ auction.createdAt | date : "yyyy-MM-dd HH:mm:ss" }}
+            {{ auction.startDate | date : "yyyy-MM-dd HH:mm:ss" }}
           </td>
           <td class="p-3">
-            {{ auction.endtedAt | date : "yyyy-MM-dd HH:mm:ss" }}
+            {{ auction.endDate | date : "yyyy-MM-dd HH:mm:ss" }}
           </td>
           <td class="p-3">
             <button
               class="text-white font-bold py-2 px-3 rounded-3xl w-full sm:w-40 shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
               [ngClass]="{
-                'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 ':
-                  auction.status === 'جاري',
-                'bg-yellow-600 hover:bg-yellow-700 active:bg-yellow-800':
-                  auction.status === 'قادم',
+                'bg-green-600 hover:bg-green-700 active:bg-green-800 ':
+                  auction.state === 'Active',
+                'bg-blue-600 hover:bg-blue-700 active:bg-blue-800':
+                  auction.state === 'Pending',
                 'bg-red-600 hover:bg-red-700 active:bg-red-800':
-                  auction.status === 'منتهي'
+                  auction.state === 'Canceled'
               }"
             >
-              {{ auction.status }}
+              {{ auction.state }}
             </button>
           </td>
 

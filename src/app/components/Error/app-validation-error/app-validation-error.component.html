@@ -1,0 +1,9 @@
+<div class="text-danger" *ngIf="control?.invalid && control?.touched">
+  <span *ngIf="control?.hasError('required')">هذا الحقل مطلوب</span>
+  <span *ngIf="control?.hasError('email')">البريد الإلكتروني غير صالح</span>
+  <span *ngIf="control?.hasError('minlength')"
+    >يجب أن يكون على الأقل
+    {{ control?.errors?.['minlength'].requiredLength }} أحرف</span
+  >
+  <span *ngIf="control?.hasError('min')">يجب أن يكون الرقم أكبر من الصفر</span>
+</div>

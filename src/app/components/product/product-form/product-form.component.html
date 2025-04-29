@@ -1,0 +1,135 @@
+<!--<div
+  
+  class="absolute p-25 inset-0 bg-black bg-opacity-25 w-scrren flex items-center justify-center z-50"
+>
+ 
+</div>-->
+<div class="bg-white p-6 rounded-xl shadow-lg mt-4 mx-10 w-auto">
+  <div class="flex justify-between items-center col-span-12">
+    <h2 class="text-2xl font-semibold">اضافة منتج</h2>
+    <button (click)="back()" class="text-gray-900 text-2xl">&times;</button>
+  </div>
+  <div class="mt-4 w-full flex justify-between col-span-12">
+    <form
+      [formGroup]="productForm"
+      (ngSubmit)="submitForm()"
+      class="grid grid-cols-2 gap-4 mt-4 w-2/3"
+    >
+      <div class="col-span-2">
+        <label class="text-2xl mb-2">الاسم</label>
+        <input
+          class="border px-2 py-3 w-full rounded mb-2"
+          formControlName="name"
+          placeholder="اسم المنتج"
+        />
+        <app-validation-error
+          [control]="productForm.get('name')"
+        ></app-validation-error>
+      </div>
+      <div class="col-span-2">
+        <label class="text-2xl mb-2">الوصف</label>
+        <textarea
+          class="border px-2 py-3 w-full rounded mb-2"
+          formControlName="description"
+          placeholder="الوصف"
+          required
+        ></textarea>
+        <app-validation-error
+          [control]="productForm.get('description')"
+        ></app-validation-error>
+      </div>
+      <div class="col-span-1">
+        <label class="text-2xl mb-2">اسم البائع</label>
+        <input
+          class="border px-2 py-3 w-full rounded mb-2"
+          formControlName="sellerName"
+          placeholder="اسم البائع"
+          required
+        />
+        <app-validation-error
+          [control]="productForm.get('sellerName')"
+        ></app-validation-error>
+      </div>
+
+      <div class="col-span-1">
+        <label class="text-2xl mb-2">القسم</label>
+        <select
+          formControlName="categoryId"
+          class="border px-2 py-3 w-full rounded mb-2"
+        >
+          <option value="0">--حدد القسم--</option>
+          <option *ngFor="let category of categories" value="{{ category.id }}">
+            {{ category.name }}
+          </option>
+        </select>
+        <app-validation-error
+          [control]="productForm.get('categoryId')"
+        ></app-validation-error>
+      </div>
+
+      <div class="col-span-1">
+        <label class="text-2xl mb-2">الكمية</label>
+        <input
+          class="border px-2 py-3 w-full rounded mb-2"
+          formControlName="quantity"
+          type="number"
+          placeholder="الكمية"
+          required
+        />
+        <app-validation-error
+          [control]="productForm.get('quantity')"
+        ></app-validation-error>
+      </div>
+
+      <div class="col-span-1">
+        <label class="text-2xl mb-2">السعر</label>
+        <input
+          class="border px-2 py-3 w-full rounded mb-2"
+          formControlName="price"
+          type="text"
+          placeholder="السعر"
+          required
+        />
+        <app-validation-error
+          [control]="productForm.get('price')"
+        ></app-validation-error>
+      </div>
+
+      <div class="col-span-2 flex justify-center mt-6">
+        <button
+          type="submit"
+          class="bg-blue-500 text-white w-full py-2 px-4 rounded-lg"
+        >
+          اضافة
+        </button>
+      </div>
+    </form>
+    <div class="col-span-4 mt-4 mx-4 w-1/3">
+      <div>
+        <h2 class="text-2xl text-center font-semibold">الصور</h2>
+        <div class="flex flex-wrap justify-center gap-4 mt-4">
+          <div
+            *ngFor="let image of product.images"
+            class="w-1/3 h-32 bg-gray-200 rounded-lg relative"
+          >
+            <img [src]="image" class="w-full h-full object-cover rounded-lg" />
+            <button
+              (click)="removeImage(image)"
+              class="absolute top-2 right-2 text-red-500"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-center mt-4">
+          <button
+            (click)="openImageDialog()"
+            class="bg-blue-500 text-white py-2 px-4 rounded w-800"
+          >
+            اضافة صورة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

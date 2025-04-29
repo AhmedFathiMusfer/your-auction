@@ -5,6 +5,8 @@ import { UsersManagementComponent } from './components/user/users-management/use
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { ProductComponent } from './components/product/product/product.component';
 import { AuctionComponent } from './components/auction/auction/auction.component';
+import { ProductFormComponent } from './components/product/product-form/product-form.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -12,8 +14,20 @@ export const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'Product',
+    path: 'Products',
     component: ProductComponent,
+  },
+  {
+    path: 'Products/add',
+    component: ProductFormComponent,
+  },
+  {
+    path: 'Products/update/:id',
+    component: ProductFormComponent,
+  },
+  {
+    path: 'Products/details/:id',
+    component: ProductDetailsComponent,
   },
   {
     path: 'Auction',
@@ -30,5 +44,26 @@ export const routes: Routes = [
   {
     path: 'Login',
     component: LoginComponent,
+  },
+  {
+    path: 'Home',
+    loadComponent: () =>
+      import('./components/customer/home/home.component').then(
+        (c) => c.HomeComponent
+      ),
+  },
+  {
+    path: 'Payment',
+    loadComponent: () =>
+      import('./components/payment/payment.component').then(
+        (c) => c.PaymentComponent
+      ),
+  },
+  {
+    path: 'AuctionDetails/:id',
+    loadComponent: () =>
+      import(
+        './components/customer/auction-details/auction-details.component'
+      ).then((c) => c.AuctionDetailsComponent),
   },
 ];

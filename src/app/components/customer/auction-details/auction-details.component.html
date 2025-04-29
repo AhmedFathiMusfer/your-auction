@@ -1,0 +1,106 @@
+<div class="max-w-4xl mx-auto p-6 bg-white mt-10 rounded-xl shadow-lg">
+  <div class="flex justify-between items-center">
+    <h2 class="text-3xl font-bold">تفاصيل المنتج</h2>
+    <button
+      class="text-xl text-white bg-blue-600 hover:bg-blue-700 rounded-xl px-4 py-2"
+      routerLink="/Products"
+    >
+      رجوع
+    </button>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 mt-6 align-items-center">
+    <!-- Image Slider -->
+    <div class="relative">
+      <img
+        [src]="images[currentIndex]"
+        alt="Product image"
+        class="w-full h-80 object-cover rounded-xl"
+      />
+      <button
+        (click)="prevImage()"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+      >
+        ‹
+      </button>
+      <button
+        (click)="nextImage()"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+      >
+        ›
+      </button>
+      <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1">
+        <div
+          *ngFor="let image of images; let i = index"
+          class="w-3 h-3 rounded-full"
+          [ngClass]="{
+            'bg-blue-500': i === currentIndex,
+            'bg-gray-300': i !== currentIndex
+          }"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="space-y-4 text-end mr-2">
+      <h2 class="text-2xl font-bold">الاسم: {{ productName }}</h2>
+      <p class="text-gray-700 w-full break-words">
+        <strong>الوصف:</strong> {{ description }}
+      </p>
+      <div class="text-xl text-black font-semibold">
+        <strong>الكمية:</strong> {{ quantity }}
+      </div>
+      <div class="text-xl text-green-600 font-semibold">
+        <strong>السعر:</strong> ${{ price }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2>المزايدين</h2>
+    <table class="min-w-full bg-white border border-gray-300 mt-4">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="py-2 px-4 border-b">اسم المزايد</th>
+          <th class="py-2 px-4 border-b">المبلغ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bidder of bidders" class="hover:bg-gray-50">
+          <td class="py-2 px-4 border-b">{{ bidder.name }}</td>
+          <td class="py-2 px-4 border-b">${{ bidder.auctionValue }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <form class="mt-4" (ngSubmit)="onSubmit()">
+      <div class="flex flex-col space-y-4">
+        <label class="text-lg font-semibold" for="bidValue">المزايدة:</label>
+        <input
+          type="number"
+          id="bidValue"
+          formControlName="bidValue"
+          class="border border-gray-300 rounded-lg p-2 w-full"
+          placeholder="أدخل قيمة المزايدة"
+          [(ngModel)]="currentBidder.auctionValue"
+          name="bidValue"
+        />
+        <button
+          type="submit"
+          class="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700"
+        >
+          تقديم المزايدة
+        </button>
+      </div>
+      <div *ngIf="bidForm.invalid && (bidForm.dirty || bidForm.touched)">
+        <div
+          *ngIf="bidForm.get('bidValue').errors?.required"
+          class="text-red-500"
+        >
+          يجب إدخال قيمة المزايدة
+        </div>
+        <div *ngIf="bidForm.get('bidValue').errors?.min" class="text-red-500">
+          يجب أن تكون قيمة المزايدة أكبر من {{ price }}
+        </div>
+      </div>
+    </form>-->
+  </div>
+</div>

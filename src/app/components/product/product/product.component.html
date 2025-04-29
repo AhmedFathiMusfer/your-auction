@@ -1,21 +1,20 @@
-<div class="p-6 text-right">
+<div class="p-6 text-right h-7/8">
   <!-- العنوان وزر الإضافة -->
-  <div class="flex flex-wrap justify-between items-center mb-6">
+  <div class="flex flex-wrap h-1/4 justify-between items-center mb-6">
     <h2 class="text-xl font-bold mb-4">إدارة المتجات</h2>
     <button
+      routerLink="add"
       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
     >
       إضافة منتج
     </button>
   </div>
 
-  <!-- النافذة المنبثقة -->
-  <!-- <app-add-user [isOpen]="isModalOpen" (close)="closeModal()"></app-add-user>-->
-
-  <!-- جعل الجدول قابلاً للتمرير أفقيًا في الشاشات الصغيرة -->
-  <div class="overflow-x-auto">
+  <div
+    class="overflow-x-auto rounded-lg h-3/4 border border-gray-300 max-h-1/4"
+  >
     <table
-      class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden"
+      class="w-full h-full border-collapse bg-white shadow-md rounded-lg overflow-hidden"
     >
       <thead class="bg-gray-200">
         <tr>
@@ -37,14 +36,16 @@
           *ngFor="let product of filteredProducts"
         >
           <td class="p-3">{{ product.id }}</td>
-          <td class="p-3">{{ product.seller_name }}</td>
+          <td class="p-3">{{ product.sellerName }}</td>
           <td class="p-3">{{ product.name }}</td>
           <td class="p-3">{{ product.description }}</td>
           <td class="p-3">{{ product.quantity }}</td>
           <td class="p-3">{{ product.price }}</td>
-          <td class="p-3">{{ product.department }}</td>
+          <td class="p-3">{{ product.categoryName }}</td>
           <td class="p-3">
-            <img class="w-10" src="/assets/icons/Edit.png" alt="" />
+            <app-list-of-options
+              [ProductId]="product.id.toString()"
+            ></app-list-of-options>
           </td>
         </tr>
       </tbody>

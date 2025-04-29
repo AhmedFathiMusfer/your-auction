@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>رفع صورة</h2>
+<mat-dialog-content>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
+  <button mat-raised-button color="primary" (click)="fileInput.click()">
+    <mat-icon>upload</mat-icon>
+    اختر صورة
+  </button>
+
+  <span *ngIf="selectedFileName" style="margin-left: 10px">
+    {{ selectedFileName }}
+  </span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">إلغاء</button>
+  <button mat-raised-button color="primary" (click)="upload()">رفع</button>
+</mat-dialog-actions>

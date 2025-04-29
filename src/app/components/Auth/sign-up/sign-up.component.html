@@ -1,5 +1,7 @@
 <div class="flex items-center bg-gray-100 justify-center min-h-screen px-4">
   <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
+    <pre>{{ responseBody | json }}</pre>
+    <pre>{{ errorMessage | json }}</pre>
     <h2 class="text-3xl primary-color font-bold text-center">انشاء حساب</h2>
     <p class="text-center text-gray-600">انشاء حساب للاستمرار</p>
 
@@ -7,6 +9,8 @@
       <!-- Email -->
       <label class="block text-xl mb-2 text-gray-700">البريد الكتروني:</label>
       <input
+        name="UserName"
+        [(ngModel)]="registerDate.email"
         type="email"
         class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Enter your email"
@@ -15,6 +19,8 @@
       <!-- Full Name -->
       <label class="block text-xl mb-2 text-gray-700 mt-3">الاسم الكامل:</label>
       <input
+        name="Name"
+        [(ngModel)]="registerDate.Name"
         type="text"
         class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Enter your name"
@@ -23,6 +29,8 @@
       <!-- Phone Number -->
       <label class="block text-xl mb-2 text-gray-700 mt-3">رقم الجوال:</label>
       <input
+        name="PhoneNamber"
+        [(ngModel)]="registerDate.phoneNumber"
         type="text"
         class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Enter your phone number"
@@ -31,6 +39,8 @@
       <!-- Password -->
       <label class="block text-xl mb-2 text-gray-700 mt-3">كلمة المرور:</label>
       <input
+        name="Password"
+        [(ngModel)]="registerDate.Password"
         type="password"
         class="w-full p-2 border rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Enter your password"
@@ -44,6 +54,7 @@
 
       <!-- Sign Up Button -->
       <button
+        (click)="register()"
         class="w-full text-xl bg-color text-white py-2 rounded-md mt-4 hover:bg-blue-900 transition"
       >
         انشاء حساب

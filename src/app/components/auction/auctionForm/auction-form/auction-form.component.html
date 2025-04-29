@@ -1,84 +1,35 @@
-<div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-auto">
-  <div class="flex justify-between items-center">
-    <h2 class="text-lg font-semibold">تفاصيل المزاد</h2>
-    <button (click)="closeDialog()" class="text-gray-500">&times;</button>
+<h2 mat-dialog-title>اضافة المنتج الى المزاد</h2>
+<mat-dialog-content>
+  <div *ngIf="errorMessage" class="text-red-500 mb-4 text-2xl">
+    <mat-icon class="text-red-500">error</mat-icon>
+    {{ errorMessage }}
   </div>
-  <form
-    [formGroup]="auctionForm"
-    (ngSubmit)="submitForm()"
-    class="grid grid-cols-2 gap-4 mt-4"
-  >
+
+  <div>
+    <span class="text-black-600 text-2xl"> ينتهي المزاد بعد</span>
     <input
-      class="border p-2 rounded col-span-2"
-      formControlName="productName"
-      placeholder="اسم المنتج"
-      required
-    />
-    <textarea
-      class="border p-2 rounded col-span-2"
-      formControlName="description"
-      placeholder="الوصف"
-      required
-    ></textarea>
-    <input
-      class="border p-2 rounded"
-      formControlName="sellerName"
-      placeholder="اسم البائع"
-      required
-    />
-    <input
-      class="border p-2 rounded"
-      formControlName="email"
-      type="email"
-      placeholder="البريد الإلكتروني"
-      required
-    />
-    <input
-      class="border p-2 rounded"
-      formControlName="phone"
-      type="tel"
-      placeholder="رقم الهاتف"
-      required
-    />
-    <input
-      class="border p-2 rounded"
-      formControlName="quantity"
       type="number"
-      placeholder="الكمية"
-      required
+      [(ngModel)]="valueOfInputNumber"
+      class="w-40 border-2 border-gray-300 rounded-md text-xl p-4 mx-2"
+      min="1"
+      name="valueOfInputNumber"
     />
-    <input
-      class="border p-2 rounded"
-      formControlName="price"
-      type="text"
-      placeholder="السعر"
-      required
-    />
-    <input
-      class="border p-2 rounded"
-      formControlName="startDate"
-      type="datetime-local"
-      placeholder="بداية المزاد"
-      required
-    />
-    <input
-      class="border p-2 rounded"
-      formControlName="endDate"
-      type="datetime-local"
-      placeholder="انتهاء المزاد"
-      required
-    />
-    <div class="col-span-2 flex justify-between mt-6">
-      <button
-        type="button"
-        class="bg-red-500 text-white py-2 px-4 rounded"
-        (click)="closeDialog()"
-      >
-        حذف
-      </button>
-      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">
-        موافق
-      </button>
-    </div>
-  </form>
-</div>
+    <select
+      name="selectedTimeUnitValue"
+      class="w-30 border-2 border-gray-300 text-xl rounded-md p-4"
+      [(ngModel)]="selectedTimeUnitValue"
+    >
+      <option *ngFor="let unit of timeUnits" [value]="unit.key">
+        {{ unit.value }}
+      </option>
+    </select>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions te align="center">
+  <button mat-button (click)="close()">
+    <span class="text-2xl">الغاء</span>
+  </button>
+  <button mat-raised-button color="primary" (click)="Add()">
+    <span class="text-2xl">اضافة</span>
+  </button>
+</mat-dialog-actions>

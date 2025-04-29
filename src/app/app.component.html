@@ -1,4 +1,4 @@
-@if (!is_login_bage()){
+@if (!is_login_bage()){ @if(is_admin_page()){
 <div class="flex">
   <app-sidebar></app-sidebar>
   <div class="flex-1">
@@ -7,8 +7,13 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
 } @else{
+<div>
+  <app-navbar></app-navbar>
+
+  <router-outlet></router-outlet>
+</div>
+} } @else{
 
 <router-outlet></router-outlet>
 }
