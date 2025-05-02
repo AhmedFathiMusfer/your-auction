@@ -19,6 +19,6 @@ export class AppComponent {
     return this.router.url === '/SignUp' || this.router.url === '/Login';
   }
   is_admin_page(): boolean {
-    return this.router.url === '/dashboard' || this.router.url === '/users-management';
+    return this.router.url.startsWith('/Admin');
   }
 }

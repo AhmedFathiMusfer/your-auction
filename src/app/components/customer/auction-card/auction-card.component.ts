@@ -13,10 +13,6 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrl: './auction-card.component.css',
 })
 export class AuctionCardComponent implements OnInit, OnDestroy {
-  /* @Input() title!: string;
-  @Input() imageUrl!: string;
-  @Input() currentBid!: number;
-  @Input() endTime!: string;*/
   @Input() auction!: IAuction;
 
   timeLeft: string = '';

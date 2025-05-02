@@ -1,5 +1,5 @@
-<div class="p-6 text-right">
-  <!-- العنوان وزر الإضافة -->
+<!-- <div class="p-6 text-right max-h-screen-2xl">
+ 
   <div class="flex flex-wrap justify-between items-center mb-6">
     <h2 class="text-xl font-bold mb-4">إدارة المزادات</h2>
     <button
@@ -10,12 +10,12 @@
     </button>
   </div>
 
-  <!-- النافذة المنبثقة -->
+ 
 
-  <!-- جعل الجدول قابلاً للتمرير أفقيًا في الشاشات الصغيرة -->
-  <div class="overflow-x-auto">
+
+  <div class="overflow-x-auto max-h-80">
     <table
-      class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden"
+      class="w-full border-collapse bg-white shadow-md rounded-lg max-h-screen-2xl"
     >
       <thead class="bg-gray-200">
         <tr>
@@ -70,5 +70,78 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div> -->
+<div class="p-6">
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-xl text-left rtl:text-right border-collapse">
+      <thead class="text-xl text-gray-700 bg-gray-300 rounded-2xl">
+        <tr>
+          <th class="px-4 py-4 rounded-tr-2xl">ID</th>
+          <th class="px-4 py-4">اسم المنتج</th>
+          <th class="px-4 py-4">المزايدين</th>
+          <th class="px-4 py-4">السعر</th>
+          <th class="px-4 py-4">الكمية</th>
+          <th class="px-4 py-4">بدء المزاد</th>
+          <th class="px-4 py-4">انتهاء المزاد</th>
+          <th class="px-4 py-4">الحالة</th>
+          <th class="px-4 py-4 rounded-tl-2xl">تعديل</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of auctions"
+          class="text-xl py-2 bg-white hover:bg-gray-50 border-t"
+        >
+          <td class="px-4 py-4">{{ item.id }}</td>
+          <td class="px-4 py-4">{{ item.productName }}</td>
+          <td class="px-4 py-4">{{ item.numberOfBidders }}</td>
+          <td class="px-4 py-4">{{ item.price }}</td>
+          <td class="px-4 py-4">{{ item.quantity }}</td>
+          <td class="px-4 py-4">{{ item.startDate }}</td>
+          <td class="px-4 py-4">{{ item.endDate }}</td>
+          <td class="px-4 py-4">
+            <span
+              [ngClass]="statusClass(item.state)"
+              class="text-xl px-4 py-2 w-full text-center rounded-full"
+            >
+              {{ item.state }}
+            </span>
+          </td>
+          <td class="px-4 py-4">
+            <button class="text-orange-500 hover:underline">✏️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-end mt-4 space-x-1">
+    <button
+      class="px-4 py-3 border bg-white hover:bg-gray-100"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
+
+    <button
+      *ngFor="let page of totalPagesArray"
+      class="px-4 py-3 border"
+      [class.bg-blue-500]="page === currentPage"
+      [class.text-white]="page === currentPage"
+      (click)="goToPage(page)"
+    >
+      {{ page }}
+    </button>
+
+    <button
+      class="px-4 py-3 border bg-white hover:bg-gray-100"
+      (click)="nextPage()"
+      [class.hidden]="currentPage === totalPages"
+    >
+      Next
+    </button>
   </div>
 </div>

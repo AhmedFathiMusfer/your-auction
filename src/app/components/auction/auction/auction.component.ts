@@ -14,7 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './auction.component.css',
 })
 export class AuctionComponent implements OnInit {
-  auctions: IAuction[] = [];
+  /* auctions: IAuction[] = [];
   constructor(
     private _auctionService: AuctionService //  private dialog: MatDialog
   ) {}
@@ -49,4 +49,62 @@ export class AuctionComponent implements OnInit {
     });
   
   }*/
+  constructor(private _auctionService: AuctionService) {}
+  auctions: IAuction[] = []; // replace with real data from API
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages = 1;
+
+  ngOnInit() {
+    this.getData();
+  }
+  get totalPagesArray() {
+    return Array(this.totalPages)
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.getData();
+  }
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.getData();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getData();
+    }
+  }
+  statusClass(status: string) {
+    switch (status.toLowerCase()) {
+      case 'active':
+        return 'bg-green-500 text-white text-xl';
+      case 'pending':
+        return 'bg-blue-500 text-white text-xl';
+      case 'cancelled':
+        return 'bg-red-500 text-white text-xl';
+      case 'completed':
+        return 'bg-gray-300 text-black text-xl';
+      default:
+        return 'bg-gray-200 text-black text-xl';
+    }
+  }
+  getData() {
+    this._auctionService
+      .getAuction(this.currentPage, this.itemsPerPage)
+      .subscribe({
+        next: (data) => {
+          this.auctions = data.items;
+          this.totalPages = data.totalPages;
+        },
+        error: (error) => {
+          console.error('Error fetching auction data:', error);
+        },
+      });
+  } //
 }

@@ -19,5 +19,5 @@ export interface UserData {
   name: string;
   phoneNumber: string;
   profilePictureUrl: string;
-  roles?: string[];
+  roles: string[];
 }

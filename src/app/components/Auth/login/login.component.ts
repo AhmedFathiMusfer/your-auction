@@ -26,7 +26,7 @@ export class LoginComponent {
       next: (data) => {
         console.log('✅ البيانات المسترجعة:', data);
         this.successLogin = true;
-        this._router.navigate(['/User']);
+        this._router.navigate(['Admin/User']);
       },
       error: (error) => {
         console.error('❌ حدث خطأ:', error);

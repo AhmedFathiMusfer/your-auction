@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import IAuction from '../Models/Auction/IAuction';
 import { DatasetController } from 'chart.js';
 import IAddAuction from '../Models/Auction/IAddAuction';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
 import Bidder from '../Models/Auction/Bidder';
+import PaginatedResult from '../Models/Pagination/PaginatedResult';
 
 @Injectable({
   providedIn: 'root',
@@ -73,8 +74,23 @@ export class AuctionService {
       },
     ];***/
   }
-  getAution(): Observable<IAuction[]> {
-    return this.http.get<IAuction[]>(`${this.baseUrl}/Auction/WithDetails`);
+  getAuction(
+    page: number,
+    pageSize: number,
+    search?: string
+  ): Observable<PaginatedResult<IAuction>> {
+    let params = new HttpParams()
+      .set('pageNumber', page)
+      .set('pageSize', pageSize);
+
+    if (search) {
+      params = params.set('search', search);
+    }
+
+    return this.http.get<PaginatedResult<IAuction>>(
+      `${this.baseUrl}/Auction/WithDetails`,
+      { params } // ✅ Send params with request
+    );
   }
   addAuction(data: IAddAuction): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/Auction`, data);

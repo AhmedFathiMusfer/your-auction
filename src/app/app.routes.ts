@@ -7,35 +7,43 @@ import { ProductComponent } from './components/product/product/product.component
 import { AuctionComponent } from './components/auction/auction/auction.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+import { hasPermissionGuard } from './guard/has-permission.guard';
 
 export const routes: Routes = [
   {
-    path: 'Dashboard',
+    path: 'Admin/Dashboard',
     component: DashboardComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'Products',
+    path: 'Admin/Products',
     component: ProductComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'Products/add',
+    path: 'Admin/Products/add',
     component: ProductFormComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'Products/update/:id',
+    path: 'Admin/Products/update/:id',
     component: ProductFormComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'Products/details/:id',
+    path: 'Admin/Products/details/:id',
     component: ProductDetailsComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'Auction',
+    path: 'Admin/Auction',
     component: AuctionComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
-    path: 'User',
+    path: 'Admin/User',
     component: UsersManagementComponent,
+    canActivate: [hasPermissionGuard],
   },
   {
     path: 'SignUp',

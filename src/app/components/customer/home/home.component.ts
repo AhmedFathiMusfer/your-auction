@@ -18,9 +18,9 @@ export class HomeComponent implements OnInit {
     private router: Router // Assuming you have a Router for navigation
   ) {}
   ngOnInit(): void {
-    this.auctionService.getAution().subscribe({
+    this.auctionService.getAuction(1, 2).subscribe({
       next: (response) => {
-        this.auctions = response;
+        this.auctions = response.items;
       },
       error: (error) => {
         console.error('Error fetching auctions:', error);

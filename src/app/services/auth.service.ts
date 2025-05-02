@@ -12,6 +12,7 @@ export class AuthService {
   private currentUserSource = new ReplaySubject<LoginResponse | null>(1);
   public currentUser: Observable<LoginResponse | null> =
     this.currentUserSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   login(data: Login): Observable<LoginResponse> {
@@ -48,7 +49,7 @@ export class AuthService {
   private setCurrentUser(user: LoginResponse): void {
     user.userData.roles = [];
     const roles = this.getDecodedToken(user.accessToken).role;
-    console.log('Roles:', roles);
+
     Array.isArray(roles)
       ? (user.userData.roles = roles)
       : user.userData.roles.push(roles);
@@ -79,5 +80,13 @@ export class AuthService {
     const user = JSON.parse(token as string);
     console.log('Parsed Token:', user.accessToken);
     return user.accessToken ? user.accessToken : null;
+  }
+  public hasPremission(permission: string): boolean {
+    const token = this.getToken();
+    if (token) {
+      const roles = this.getDecodedToken(token).role;
+      return roles.includes(permission);
+    }
+    return false;
   }
 }
